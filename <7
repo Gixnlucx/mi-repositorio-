@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Un espacio para nosotros</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #3e2723, #8d6e63);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    header {
+      background-color: #fbe9e7;
+      padding: 50px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #4e342e;
+      margin-bottom: 15px;
+      font-size: 2.2rem;
+      animation: slideDown 1s ease;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #5d4037;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #4e342e;
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      font-size: 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #3e2723;
+      transform: scale(1.05);
+    }
+
+    #mensaje {
+      margin-top: 25px;
+      font-style: italic;
+      color: #4e342e;
+      min-height: 50px;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .corazon-flotante {
+      position: absolute;
+      color: rgba(78, 52, 46, 0.8); /* Marrón oscuro */
+      font-size: 24px;
+      animation: subir 2.5s ease-out forwards;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    @keyframes subir {
+      from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-200px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Un espacio que aún me hace pensar en ti</h1>
+    <p>No es una excusa. Tampoco es nostalgia disfrazada. Es simplemente un pequeño gesto. Porque aunque ya no seamos, una parte de mí quería dejar esto aquí.</p>
+    <button onclick="mostrarMensaje()">Ver qué pienso</button>
+    <div id="mensaje"></div>
+  </header>
+
+  <script>
+    const mensajes = [
+      "Lo nuestro no terminó como esperábamos... pero fue real.",
+      "No vine a buscar nada. Solo a dejar esto, porque aprendí mucho de ti.",
+      "A veces cierro los ojos y todavía escucho esas risas… raras, pero mías.",
+      "No te guardo rencor. Solo guardo gratitud y algunas canciones que ya no puedo escuchar.",
+      "Si llegaste hasta aquí… ya sabes. No es odio. Es recuerdo.",
+      "Nunca pensé que haría una página web para ti, pero así es la vida.",
+      "Hubo errores, sí. Pero también hubo cosas bonitas.",
+      "Recuerdo cuando decías que eras mala con la tecnología. Míranos ahora.",
+      "No hace falta hablar. Solo quería dejar esto en silencio.",
+      "A veces uno guarda cosas en lugares raros. Yo guardé esto aquí.",
+      "No pretendo cambiar el pasado. Solo recordarlo con dignidad.",
+      "Si esto fuera una película, este sería el after credit raro.",
+      "Las despedidas no siempre necesitan palabras, pero esta vez sí quise dejarlas.",
+      "No todo fue malo. No todo fue bueno. Pero fue nuestro.",
+      "¿Quién hace páginas para sus ex? Yo. Raro, ¿no?",
+      "Por si alguna vez te preguntaste si me importaste: sí.",
+      "Esto no es una indirecta, es un archivo.",
+      "No hace falta que contestes. Solo quería escribir algo bonito.",
+      "Cierro este capítulo, pero sin borrar lo que aprendí.",
+      "¿Recuerdas las promesas? Algunas sí las cumplí.",
+      "No busco segundas partes. Solo quise que supieras que lo valoré.",
+      "Nunca fui bueno expresando con palabras, pero con código me sale mejor.",
+      "No sé si verás esto, pero si lo haces: gracias.",
+      "Hay canciones que ya no puedo escuchar, pero esta página sí la puedo mirar.",
+      "Esto no es orgullo disfrazado, es respeto envuelto en HTML.",
+      "Perdón por los errores. Gracias por las lecciones.",
+      "No busco respuestas. Solo necesitaba cerrar con belleza.",
+      "¿Y si algún día lo recordamos con una sonrisa? Ojalá.",
+      "No hay rencores, hay aprendizajes.",
+      "Nunca supe decir adiós. Así que mejor lo escribí.",
+      "No es por ti. Es por mí. Por cerrar lo que quedó abierto.",
+      "Algunos finales merecen ser escritos con código bonito.",
+      "Nunca esperé que termináramos así, pero te deseo lo mejor.",
+      "El tiempo acomoda las cosas. Hoy solo quería acomodar esta.",
+      "Si supieras cuántas veces borré este mensaje antes de escribirlo en código…",
+      "No sé si esto sea necesario, pero para mí lo fue.",
+      "Gracias por los buenos momentos. Los malos… ya aprendí de ellos.",
+      "No quiero que pienses mal. Solo quería que supieras que fuiste importante.",
+      "El HTML nunca fue tan personal hasta ahora.",
+      "No hace falta que digas nada. Solo mira y sigue tu camino.",
+      "Nunca supe despedirme de forma elegante. Hoy lo intenté.",
+      "A veces lo que queda pendiente se resuelve con un simple 'gracias'.",
+      "Lo mejor que nos quedó fue haber intentado.",
+      "Esta es la última vez que escribo algo para ti… en código.",
+      "No pretendo volver. Solo quería dejar este recuerdo bonito.",
+      "Por si alguna vez lo dudas: sí te quise. A mi manera.",
+      "Aunque esta página quede perdida en internet, al menos existió.",
+      "Me despido. Esta vez de verdad. Con respeto y cariño.",
+      "Si llegaste al mensaje 50… te mereces un aplauso. Y paz."
+    ];
+
+    let indice = 0;
+
+    function mostrarMensaje() {
+      // Mostrar mensaje
+      const mensaje = document.getElementById('mensaje');
+      mensaje.style.opacity = '0';
+      setTimeout(() => {
+        mensaje.innerText = mensajes[indice];
+        mensaje.style.opacity = '1';
+        indice = (indice + 1) % mensajes.length;
+      }, 300);
+
+      // Crear corazón animado (marrón)
+      const corazon = document.createElement('div');
+      corazon.classList.add('corazon-flotante');
+      corazon.style.left = (50 + Math.random() * 100 - 50) + "%";
+      corazon.style.color = `rgba(${78 + Math.random()*20}, ${52 + Math.random()*20}, ${46 + Math.random()*20}, 0.8)`; // Variaciones de marrón
+      corazon.style.fontSize = (20 + Math.random() * 30) + "px";
+      corazon.innerText = "❤";
+      document.body.appendChild(corazon);
+
+      // Eliminar después de la animación
+      setTimeout(() => {
+        corazon.remove();
+      }, 2500);
+    }
+  </script>
+
+</body>
